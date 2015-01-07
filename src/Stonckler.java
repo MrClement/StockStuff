@@ -5,7 +5,7 @@ public class Stonckler {
 
 	public static void main(String[] args) {
 		HashMap<String, Stock> stocks = new HashMap<String, Stock>();
-		stocks.put("Google", new Stock("GOOGL"));
+		stocks.put("LuLuLemon", new Stock("LULU"));
 		stocks.put("Tesla", new Stock("TSLA"));
 		stocks.put("Southwest", new Stock("LUV"));
 		stocks.put("Apple", new Stock("AAPL"));
@@ -19,6 +19,7 @@ public class Stonckler {
 		for (Entry<String, Stock> e : stocks.entrySet()) {
 			e.getValue().updatePrice();
 			System.out.println(e.getKey() + " " + e.getValue().getPrice());
+			break;
 		}
 	}
 }

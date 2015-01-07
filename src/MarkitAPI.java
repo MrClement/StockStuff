@@ -40,7 +40,7 @@ public class MarkitAPI {
 			}
 
 			HashMap<String, Object> parsedJSON = MyJSONParser.parseJSON(result);
-
+			System.out.println(parsedJSON);
 			return parsedJSON;
 		} catch (IOException e) {
 			return null;
