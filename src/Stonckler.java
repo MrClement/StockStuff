@@ -19,7 +19,7 @@ public class Stonckler {
 		for (Entry<String, Stock> e : stocks.entrySet()) {
 			e.getValue().updatePrice();
 			System.out.println(e.getKey() + " " + e.getValue().getPrice());
-			break;
+			StockValue.buyStock(e.getValue().getSymbol(), e.getValue().getPrice());
 		}
 	}
 }

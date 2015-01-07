@@ -87,7 +87,7 @@ public class StockValue {
 		}
 	}
 
-	public static void buy(String symbol) {
+	private static void buy(String symbol) {
 		System.out.println("YOU BOUGHT IT!");
 	}
 }
