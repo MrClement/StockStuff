@@ -1,7 +1,10 @@
+import java.util.HashMap;
+
 public class Stock {
 
 	private String symbol;
 	private double price;
+	private String time;
 
 	public Stock(String symbol) {
 		this.symbol = symbol;
@@ -28,10 +31,16 @@ public class Stock {
 		// How?
 		System.out.println(symbol);
 		try {
-			price = Double.parseDouble((String) MarkitAPI.getInfo(symbol).get("LastPrice"));
+			HashMap<String, Object> info = MarkitAPI.getInfo(symbol);
+			price = Double.parseDouble((String) info.get("LastPrice"));
+			time = (String) info.get("Timestamp");
 		} catch (NullPointerException e) {
 
 		}
+	}
+
+	public String getTime() {
+		return time;
 	}
 
 }
