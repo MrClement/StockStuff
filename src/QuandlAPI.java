@@ -20,6 +20,9 @@ public class QuandlAPI {
 
 			// https://www.quandl.com/api/v1/datasets/FRED/GDP.json
 
+			// https://www.quandl.com/api/v1/datasets/SEC/AAPL_EARNINGSPERSHAREDILUTED_A.json?auth_token=b51eX81Wyiu1umHEa_iJ
+			// https://www.quandl.com/api/v1/datasets/DMDRN/AAPL_EPS_GRO_EXP.json?auth_token=b51eX81Wyiu1umHEa_iJ
+
 			String quote = "https://www.quandl.com/api/v1/datasets/ZEE/AAPL_Q.json?auth_token=b51eX81Wyiu1umHEa_iJ";
 			url = new URL(quote);
 
