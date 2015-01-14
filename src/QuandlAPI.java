@@ -48,4 +48,35 @@ public class QuandlAPI {
 			return null;
 		}
 	}
+	public HashMap<String, Object> getGrowth(String symbol){
+		try{
+		URL url;
+		String result = "";
+		String line;
+		HttpURLConnection connection;
+		BufferedReader rd;
+		
+		String growth = "https://www.quandl.com/api/v1/datasets/ZEE/AAPL_Q.json?auth_token=b51eX81Wyiu1umHEa_iJ";
+		url = new URL(growth);
+
+		connection = (HttpURLConnection) (url.openConnection());
+
+		connection.setRequestMethod("GET");
+
+		int response = connection.getResponseCode();
+
+		rd = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+		while ((line = rd.readLine()) != null) {
+
+			result += line + "\n";
+
+		}
+
+		HashMap<String, Object> parsedJSON = QuandlParser.parse(result);
+		return parsedJSON;
+	} catch (IOException e) {
+		return null;
+	}	
+	}
 }
