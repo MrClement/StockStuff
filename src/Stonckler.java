@@ -7,8 +7,8 @@ public class Stonckler {
 
 	public static void main(String[] args) throws IOException {
 		HashMap<String, Stock> stocks = new HashMap<String, Stock>();
-		stocks.put("LuLuLemon", new Stock("LULU"));
-		stocks.put("Tesla", new Stock("TSLA"));
+		// stocks.put("LuLuLemon", new Stock("LULU"));
+		// stocks.put("Tesla", new Stock("TSLA"));
 		stocks.put("Southwest", new Stock("LUV"));
 		stocks.put("Apple", new Stock("AAPL"));
 		stocks.put("Microsoft", new Stock("MSFT"));
@@ -18,6 +18,7 @@ public class Stonckler {
 		// stocks.put("Alibaba", new Stock("BABA"));
 		stocks.put("Oracle", new Stock("ORCL"));
 		stocks.put("Starbucks", new Stock("SBUX"));
+		stocks.put("Coca Cola", new Stock("KO"));
 		for (Entry<String, Stock> e : stocks.entrySet()) {
 			e.getValue().updatePrice();
 			System.out.println(e.getKey() + " " + e.getValue().getPrice());
