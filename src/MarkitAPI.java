@@ -21,6 +21,7 @@ public class MarkitAPI {
 
 			String name = "http://dev.markitondemand.com/Api/v2/Lookup/json?input=Netflix";
 			String quote = "http://dev.markitondemand.com/Api/v2/Quote/json?symbol=" + symbol;
+			quote = "https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20yahoo.finance.keystats%20WHERE%20symbol%3D'AAPL'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
 			url = new URL(quote);
 
 			connection = (HttpURLConnection) (url.openConnection());
