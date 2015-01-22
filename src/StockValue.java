@@ -24,4 +24,17 @@ public class StockValue {
 	private static void buy(String symbol) {
 		System.out.println("YOU BOUGHT IT!");
 	}
+	private static void sell(String symbol) {
+		System.out.println("YOU SOLD IT!");
+	}
+	
+	public static void shortTermEval(String symbol, double price, double dailyLow, double dailyHigh){
+		if (price < dailyLow *1.1){
+			buy(symbol);
+		}else if (price > dailyHigh*0.9){
+			sell(symbol);
+		}else{
+			System.out.println("Keep current portfolio");
+		}
+	}
 }
