@@ -1,13 +1,13 @@
-import java.util.HashMap;
-
 public class Stock {
 
 	private String symbol;
 	private double price;
 	private String time;
+	private boolean bought;
 
 	public Stock(String symbol) {
 		this.symbol = symbol;
+		updatePrice();
 	}
 
 	public String getSymbol() {
@@ -27,13 +27,15 @@ public class Stock {
 	}
 
 	public void updatePrice() {
-		// gets current stock price from Markit
+		// gets current stock price from Yahoo
 		// How?
 		System.out.println(symbol);
 		try {
-			HashMap<String, Object> info = MarkitAPI.getInfo(symbol);
-			price = Double.parseDouble((String) info.get("LastPrice"));
-			time = (String) info.get("Timestamp");
+			YahooAPI a = new YahooAPI(symbol);
+
+			price = a.getCurrentPrice();
+			bought = StockValue.buyStock(symbol, price, a);
+			time = a.getTime();
 		} catch (NullPointerException e) {
 
 		}
@@ -41,6 +43,10 @@ public class Stock {
 
 	public String getTime() {
 		return time;
+	}
+
+	public String toString() {
+		return symbol + " " + "Price: " + price + " Bought? " + bought;
 	}
 
 }
