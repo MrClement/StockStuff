@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class YahooAPI {
@@ -19,10 +20,12 @@ public class YahooAPI {
 	public YahooAPI(String symbol) {
 		JSONObject quotes = getInfo(symbol, "quotes");
 		JSONObject keystats = getInfo(symbol, "keystats");
+		JSONObject historical = getInfo(symbol, "historical");
 		currentPrice = establishPrice(quotes);
 		EPS = establishEPS(keystats);
 		growth = establishGrowth(keystats);
 		time = establishTime(keystats);
+		dailys = establishDailys(historical);
 	}
 
 	public double getCurrentPrice() {
@@ -104,7 +107,16 @@ public class YahooAPI {
 		stats = stats.getJSONObject("query");
 		return stats.getString("created");
 	}
-
+	private ArrayList<Double> establishDailys(JSONObject historical){
+		JSONArray myArray = new JSONArray();
+		myArray = historical.getJSONObject("query").getJSONObject("results").getJSONArray("quote");
+		int counter = 0;
+		for (int i = 0; i<myArray.length(); i++){
+			dailys.set(counter++, myArray.getJSONObject(i).getDouble("High"));
+			dailys.set(counter++, myArray.getJSONObject(i).getDouble("Low"));
+		}
+		return dailys;	
+	}
 	private double establishEPS(JSONObject stats) {
 		stats = stats.getJSONObject("query").getJSONObject("results").getJSONObject("stats");
 		JSONObject EPS = stats.getJSONObject("DilutedEPS");
