@@ -67,7 +67,7 @@ public class YahooAPI {
 						+ symbol
 						+ "'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
 			} else if (source.equals("historical")) {
-				String startDate = "2012-01-01";
+				String startDate = "2014-01-01";
 				GregorianCalendar now = new GregorianCalendar();
 				String endDate = now.get(GregorianCalendar.YEAR) + "-" + now.get(GregorianCalendar.MONTH) + "-"
 						+ now.get(GregorianCalendar.DAY_OF_MONTH);
