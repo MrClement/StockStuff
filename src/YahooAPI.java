@@ -21,7 +21,7 @@ public class YahooAPI {
 		JSONObject quotes = getInfo(symbol, "quotes");
 		JSONObject keystats = getInfo(symbol, "keystats");
 		JSONObject historical = getInfo(symbol, "historical");
-		JSONObject estimates= getInfo(symbol, "analystestimate");
+		JSONObject estimates = getInfo(symbol, "analystestimate");
 		currentPrice = establishPrice(quotes);
 		EPS = establishEPS(keystats);
 		growth = establishGrowth(symbol, estimates);
@@ -83,8 +83,10 @@ public class YahooAPI {
 						+ "%22%20and%20endDate%20%3D%20%22"
 						+ endDate
 						+ "%22&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
-			} else if (source.equals("analystestimate")) { 
-				quote="https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20yahoo.finance.analystestimate%20WHERE%20symbol%3D'"+symbol+"'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+			} else if (source.equals("analystestimate")) {
+				quote = "https://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20yahoo.finance.analystestimate%20WHERE%20symbol%3D'"
+						+ symbol
+						+ "'&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
 			} else {
 				quote = "";
 			}
@@ -129,11 +131,12 @@ public class YahooAPI {
 
 	}
 
-	  private double establishGrowth(String symbol, JSONObject estimate) {
-		    estimate = estimate.getJSONObject("query").getJSONObject("results").getJSONObject("results").getJSONObject("GrowthEst").getJSONObject("Next5Years");
-		    return Double.parseDouble(estimate.getString(symbol).split("%")[0]);
-
-		  }
+	private double establishGrowth(String symbol, JSONObject estimate) {
+		estimate = estimate.getJSONObject("query").getJSONObject("results").getJSONObject("results")
+				.getJSONObject("GrowthEst").getJSONObject("Next5Years");
+		double growth = Double.parseDouble(estimate.getString(symbol).split("%")[0]);
+		return growth / 100;
+	}
 
 	private double establishPrice(JSONObject quotes) {
 		quotes = quotes.getJSONObject("query").getJSONObject("results").getJSONObject("quote");
