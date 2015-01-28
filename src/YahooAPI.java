@@ -15,7 +15,7 @@ public class YahooAPI {
 	private double EPS;
 	private String time;
 	private double growth;
-	private ArrayList<Double> dailys;
+	private ArrayList<Double> dailies;
 
 	public YahooAPI(String symbol) {
 		JSONObject quotes = getInfo(symbol, "quotes");
@@ -25,7 +25,7 @@ public class YahooAPI {
 		EPS = establishEPS(keystats);
 		growth = establishGrowth(keystats);
 		time = establishTime(keystats);
-		dailys = establishDailys(historical);
+		dailies = establishDailys(historical);
 	}
 
 	public double getCurrentPrice() {
@@ -45,7 +45,7 @@ public class YahooAPI {
 	}
 
 	public ArrayList<Double> getDailys() {
-		return dailys;
+		return dailies;
 	}
 
 	public JSONObject getInfo(String symbol, String source) {
@@ -112,10 +112,10 @@ public class YahooAPI {
 		myArray = historical.getJSONObject("query").getJSONObject("results").getJSONArray("quote");
 		int counter = 0;
 		for (int i = 0; i<myArray.length(); i++){
-			dailys.set(counter++, myArray.getJSONObject(i).getDouble("High"));
-			dailys.set(counter++, myArray.getJSONObject(i).getDouble("Low"));
+			dailies.set(counter++, myArray.getJSONObject(i).getDouble("High"));
+			dailies.set(counter++, myArray.getJSONObject(i).getDouble("Low"));
 		}
-		return dailys;	
+		return dailies;	
 	}
 	private double establishEPS(JSONObject stats) {
 		stats = stats.getJSONObject("query").getJSONObject("results").getJSONObject("stats");
