@@ -4,9 +4,20 @@ public class Stock {
 	private double price;
 	private String time;
 	private boolean bought;
+	private double EPS;
+	private double growth;
+
+	public double getEPS() {
+		return EPS;
+	}
+
+	public double getGrowth() {
+		return growth;
+	}
 
 	public Stock(String symbol) {
 		this.symbol = symbol;
+//		YahooAPI y=new YahooAPI(symbol);
 		updatePrice();
 	}
 
@@ -36,6 +47,8 @@ public class Stock {
 			price = a.getCurrentPrice();
 			bought = StockValue.buyStock(symbol, price, a);
 			time = a.getTime();
+			EPS = a.getEPS();
+			growth = a.getGrowth();
 		} catch (NullPointerException e) {
 
 		}
