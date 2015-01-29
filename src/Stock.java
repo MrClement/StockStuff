@@ -46,6 +46,7 @@ public class Stock {
 
 			price = a.getCurrentPrice();
 			bought = StockValue.buyStock(symbol, price, a);
+			StockValue.shortTermEval(symbol, price, a);
 			time = a.getTime();
 			EPS = a.getEPS();
 			growth = a.getGrowth();

@@ -8,17 +8,17 @@ public class StockValue {
 		double Y = 3.79; // 20 year bond rate (try to update this daily)
 		double BY = 3.46; // Average yield of high-grade corporate bonds
 
-		System.out.println("Trying to buy " + symbol);
+		System.out.println("Long:");
 		double EPS = a.getEPS();
 		double g = a.getGrowth();
 
 		double V = (EPS * (PE + (2 * g)) * BY) / Y; // Value
-		System.out.println(V / price);
 		if (V / price > 1) {
 			buy(symbol);
 			return true;
 
 		}
+		System.out.println("Nope.");
 		return false;
 
 	}
@@ -34,6 +34,7 @@ public class StockValue {
 	public static void shortTermEval(String symbol, double price, YahooAPI a) {
 		ArrayList<Double> dailys = a.getDailys();
 		Double dailyLow = 0.0;
+		System.out.println("Short: ");
 		for (int i = 1; i < dailys.size(); i += 2) {
 			dailyLow += dailys.get(i);
 		}
