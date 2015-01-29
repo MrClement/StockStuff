@@ -11,17 +11,10 @@ public class Stonckler {
 
   public static void main(String[] args) throws IOException {
     HashMap<String, Stock> stocks = new HashMap<String, Stock>();
-    stocks.put("LuLuLemon", new Stock("LULU"));
-    stocks.put("Tesla", new Stock("TSLA"));
-    stocks.put("Southwest", new Stock("LUV"));
-    stocks.put("Apple", new Stock("AAPL"));
-    stocks.put("Microsoft", new Stock("MSFT"));
-    stocks.put("Baidu", new Stock("BIDU"));
-    // stocks.put("BMW", new Stock("BMW"));
-    stocks.put("Chipotle", new Stock("CMG"));
-    stocks.put("Alibaba", new Stock("BABA"));
-    stocks.put("Oracle", new Stock("ORCL"));
-    stocks.put("Starbucks", new Stock("SBUX"));
+    System.out.println("What is the company's symbol?");
+   Scanner s = new Scanner(System.in);
+   String symbol = s.nextLine();
+   stocks.put(symbol, new Stock(symbol));
 
     FileWriter f = new FileWriter("data.csv", true);
 
@@ -30,7 +23,7 @@ public class Stonckler {
 
     f.append('\n');
     for (Entry<String, Stock> e : stocks.entrySet()) {
-      System.out.println(e.getValue());
+      //System.out.println(e.getValue());
       // e.getValue().updatePrice();
       // System.out.println("Current price: "+e.getKey() + " " +
       // e.getValue().getPrice());
@@ -50,7 +43,7 @@ public class Stonckler {
       f.append('\n');
     }
     f.close();
-    readInfo();
+    //readInfo();
   }
   
 	public static void readInfo() throws FileNotFoundException{
