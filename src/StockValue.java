@@ -34,17 +34,16 @@ public class StockValue {
 	public static void shortTermEval(String symbol, double price, YahooAPI a) {
 		ArrayList<Double> dailys = a.getDailys();
 		Double dailyLow = 0.0;
-		for (int i = 0; i < dailys.size(); i += 2) {
-			dailyLow = dailys.get(i);
+		for (int i = 1; i < dailys.size(); i += 2) {
+			dailyLow += dailys.get(i);
 		}
 		dailyLow = dailyLow / (dailys.size() / 2);
 
 		Double dailyHigh = 0.0;
-		for (int i = 1; i < dailys.size(); i += 2) {
-			dailyHigh = dailys.get(i);
+		for (int i = 0; i < dailys.size(); i += 2) {
+			dailyHigh += dailys.get(i);
 		}
 		dailyHigh = dailyHigh / (dailys.size() / 2);
-
 		if (price < dailyLow * 1.1) {
 			buy(symbol);
 		} else if (price > dailyHigh * 0.9) {
